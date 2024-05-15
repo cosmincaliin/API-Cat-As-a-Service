@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PalabrasController;
+use App\Http\Controllers\CatApiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// API PALABRAS CATALAN
-Route::get('/palabras/{longitud}/{cantidad}', [PalabrasController::class, 'obtenerPalabras']);
+Route::get('/cats/{tag}', [CatApiController::class, 'search']); // Mover esta ruta arriba de las rutas con parámetro ID
+Route::get('/cats', [CatApiController::class, 'index']);
+Route::get('/cats/{id}', [CatApiController::class, 'show']);
